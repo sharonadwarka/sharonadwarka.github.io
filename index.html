@@ -168,16 +168,26 @@
     .case-card:nth-child(n) { grid-column: span 2; grid-row: span 2; }
   }
   @media (max-width: 768px) {
-    nav { position: fixed; top: 0; left: 0; right: 0; width: 100%; padding: 1.5rem 2rem; z-index: 100; background: var(--brown-deep); box-sizing: border-box; }
-    .nav-links { display: none; }
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: var(--brown-deep); flex-direction: column; align-items: center; justify-content: center; gap: 2rem; z-index: 99; }
+    .nav-links.nav-open { display: flex; }
+    .nav-links a { font-size: 1rem; color: var(--cream); letter-spacing: 0.2em; }
+    .nav-hamburger { display: flex; }
     section { padding: 2rem 1.5rem; }
     .hero { padding: 5rem 1.5rem 2rem; }
-    .hero-title { font-size: clamp(1.4rem, 5vw, 2rem); }
-    .hero-eyebrow { font-size: 0.58rem; }
-    .services-grid { grid-template-columns: repeat(3, 1fr); }
-    .service-card { padding: 1.2rem; }
-    .about { background: var(--cream); display: grid; grid-template-columns: 1fr 1.5fr; gap: 3.5rem; align-items: center; padding: 3rem 4rem; }
-    .about-image-wrapper { max-width: 180px; margin: 0 auto; }
+    .hero-title { font-size: 1.3rem; }
+    .services-grid { grid-template-columns: 1fr; }
+    .service-card { padding: 1rem; border-bottom: 1px solid var(--sand); }
+    .service-card > p { display: none; }
+    .service-card.expanded > p { display: block; }
+    .service-tags { display: none; }
+    .service-card.expanded .service-tags { display: block; }
+    .service-read-more { display: inline-block; }
+    .about { grid-template-columns: 1fr; gap: 1.5rem; padding: 2rem 1.5rem; }
+    .about-image-wrapper { max-width: 140px; margin: 0 auto; }
+    .about-text p:nth-child(n+2) { display: none; }
+    .about-text.expanded p { display: block; }
+    #aboutReadMore { display: inline-block; }
     .credentials { grid-template-columns: 1fr 1fr; }
     .portfolio-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 130px; }
     .case-card:nth-child(n) { grid-column: span 1; grid-row: span 1; }
@@ -187,13 +197,13 @@
     .case-modal-images { grid-template-columns: 1fr; }
     .testimonials { padding: 2rem 1.5rem; }
     .testimonial-slide blockquote { font-size: 0.85rem; }
-    .contact { background: var(--warm-white); text-align: center; padding: 2rem 4rem; }
+    .contact { padding: 2rem 1.5rem; }
     .contact-actions { flex-direction: column; align-items: center; gap: 0.8rem; }
     .contact-email, .contact-linkedin { width: 100%; max-width: 280px; text-align: center; }
     .services-header { margin-bottom: 1rem; }
-    .portfolio-header { margin-bottom: 1rem; }
     footer { padding: 1.5rem; font-size: 0.7rem; }
     .pricing-note { padding: 0.8rem 1rem; }
+    .section-title { font-size: 1.5rem; }
   }
   @media (max-width: 480px) {
     .hero-title { font-size: 1.3rem; }
