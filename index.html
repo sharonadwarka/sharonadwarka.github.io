@@ -197,8 +197,11 @@
     .hero-cta-primary { padding: 0.6rem 1.2rem; font-size: 0.62rem; }
   }
 
-  .nav-hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
+  .nav-hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; position: relative; z-index: 101; }
   .nav-hamburger span { display: block; width: 22px; height: 1.5px; background: var(--sand-mid); transition: all 0.3s; }
+  .nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+  .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+  .nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
   @media (max-width: 768px) {
     .nav-hamburger { display: flex; }
     .nav-links { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: var(--brown-deep); flex-direction: column; align-items: center; justify-content: center; gap: 2rem; z-index: 99; }
@@ -222,7 +225,7 @@
     <li><a href="#contact">Contact</a></li>
     <li><a href="#contact" class="nav-cta">Work with me</a></li>
   </ul>
-  <button class="nav-hamburger" onclick="document.querySelector('.nav-links').classList.toggle('nav-open')" aria-label="Menu">
+  <button class="nav-hamburger" onclick="toggleNav(this)" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
   </div>
@@ -534,6 +537,19 @@
     text.classList.toggle('expanded');
     btn.textContent = text.classList.contains('expanded') ? 'Read less ↑' : 'Read more ↓';
   }
+
+  function toggleNav(btn) {
+    const links = document.querySelector('.nav-links');
+    const isOpen = links.classList.toggle('nav-open');
+    btn.classList.toggle('open', isOpen);
+  }
+  function closeNav() {
+    document.querySelector('.nav-links').classList.remove('nav-open');
+    document.querySelector('.nav-hamburger').classList.remove('open');
+  }
+  document.querySelectorAll('.nav-links a').forEach(function (a) {
+    a.addEventListener('click', closeNav);
+  });
 </script>
 
 </body>
